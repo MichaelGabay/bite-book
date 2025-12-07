@@ -1,0 +1,62 @@
+.myNav {
+    height: 67px;
+    background-color: rgba(179, 202, 222, 0.8);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0.25px 0.25px 0.25px 0.25px rgba(68, 76, 83, 0.8);
+}
+
+.logoNav {
+    height: 56px;
+    width: fit-content;
+    background-color: rgba(255, 255, 255, 0.779);
+    border-radius: 50%;
+}
+
+.logoNavImg {
+    height: 56px;
+}
+
+.thebur {
+    cursor: pointer;
+}
+
+.thebur:active {
+    transform: scale(1.10);
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.cardBurger {
+    width: 200px;
+    position: absolute;
+    top: 73px;
+    background-color: rgba(179, 202, 222, 0.9);
+    z-index: 1111;
+    border-radius: 8px;
+    border: 1px solid white;
+}
+
+.cardBurger::before {
+    content: "";
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    top: -14px;
+    right: 1.2rem;
+    background-color: rgba(179, 202, 222, 0.9);
+    transform: rotate(45deg);
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+}
+.line{
+    background-image: radial-gradient(rgb(54, 54, 177) 10%,turquoise );
+    height: 2px;
+    border-radius: 50%;
+}
+.bold{
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+}

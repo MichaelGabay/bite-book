@@ -1,0 +1,27 @@
+.aboutUs {
+    border-radius: 30px;
+    background-color: rgba(201, 196, 196, 0.443);
+}
+.card-style{
+    width: 300px;
+    background-color: rgba(245, 245, 245, 0.5);
+    border-radius: 15px;
+
+}
+.about-text{
+    text-align: center;
+}
+.color-bg{
+    -webkit-text-stroke: 1.5px rgba(70, 58, 58, 0.65);
+    font-weight: bold;
+    color: rgb(54, 54, 54);
+}
+.fontW{
+    font-weight: bold;
+}
+.linkStyle:hover{
+    text-decoration: none;
+}
+.chat{
+    font-weight: bold;
+}

@@ -1,0 +1,58 @@
+.recipeViowMain{
+    width: fit-content;
+}
+
+.RecipeViewContiner{
+    min-height: 90vh;
+    border-radius: 15px;
+    background-color: rgba(232, 230, 230, 0.822);
+    font-size: xx-large;
+}
+.img_div{
+    height: 300px;
+}
+.imgCarousel{
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.plus{
+    position: fixed;
+    bottom: 30px;
+    left: 45px;
+    z-index: 1000;
+}
+.ing_style{
+text-align: right;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 25px;
+font-weight: 600;
+}
+.imgLogo_container{
+height: 90vh;
+justify-content: center;
+display: flex;
+}
+.imgLogo{
+height: 100%;
+}
+.close-recipe {
+    cursor: pointer;
+    color: red;
+}
+.close-recipe:hover {
+    cursor: pointer;
+    color: red;
+}
+.close-recipe:active {
+    transform: scale(1.10);
+}
+
+@media (max-width: 1000px) {
+    .imgLogo_container{
+        height: 30vh;
+  }
+  .RecipeViewContiner{
+    min-height: 30vh;
+  }
+}

@@ -1,0 +1,39 @@
+.back-button{
+    position: fixed;
+    top: 20px;
+    height: 40px;
+    right: 10px;
+    width: 60px;
+    z-index: 1000;
+}
+.text-pro{
+    text-align: center;
+    -webkit-text-stroke: 1.5px rgba(70, 58, 58, 0.65);
+    color: black;
+
+}
+.textProPrice{
+text-align: right;
+}
+.bg-pro{
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke: 0.5px white;
+
+    color: rgb(11, 14, 18);
+    font-size: x-large;
+    border-radius: 25px 25px 0 0 ;
+}
+.bc-card{
+    background-color: rgba(245, 245, 245, 0.5);
+    filter: drop-shadow(1px 1px 2px);
+    border-radius: 25px;
+}
+.shake:hover{
+    animation: shake 200ms 2;
+}
+
+@keyframes shake {
+    0%, 100% {translate: 0;}
+    25% {translate: 0.125rem;}
+    75% {translate: -0.125rem;}
+}

@@ -1,0 +1,11 @@
+.cTitle{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
+    font-weight: 500;
+    color: black;
+    background-color: azure;
+    overflow-x: auto;
+}

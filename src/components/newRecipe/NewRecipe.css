@@ -1,0 +1,30 @@
+.newRecipeForm {
+    border-radius: 30px;
+    background-color: rgba(232, 230, 230, 0.822);
+}
+
+.bgInpot {
+    background-color: rgba(181, 178, 178, 0.411);
+    border-radius: 5px;
+}
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    height: 40px;
+    right: 10px;
+    width: 60px;
+    z-index: 1000;
+}
+.back-button:active{
+    transform: scale(1.1);
+}
+.btn-color{
+    background-color: rgb(199, 31, 22);
+    color: whitesmoke;
+}
+.imgCarouselNew{
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}

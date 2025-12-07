@@ -1,0 +1,16 @@
+.back-button-ipa{
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    z-index: 1000;
+}
+.inputStyle{
+    background-color:  rgba(232, 230, 230, 0.822);
+    border: 1px solid white;
+    border-radius: 0 5px 5px 0  ;
+}
+.btntStyle{
+    background-color:  rgba(232, 230, 230, 0.822);
+    border: 1px solid white;
+    border-radius: 5px 0 0 5px  ;
+}
