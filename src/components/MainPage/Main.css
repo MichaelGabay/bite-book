@@ -1,0 +1,107 @@
+/* ============================================
+   CSS Variables
+   ============================================ */
+:root {
+  --main-bg: linear-gradient(135deg, rgba(179, 202, 222, 0.95) 0%, rgba(200, 220, 240, 0.95) 100%);
+  --main-card-bg: rgba(255, 255, 255, 0.9);
+  --main-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --main-card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --main-border-radius: 20px;
+  --main-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --main-spacing: 1.5rem;
+}
+
+/* ============================================
+   Main Page Container
+   ============================================ */
+.main-page-container {
+  min-height: 100vh;
+  background: var(--main-bg);
+  background-attachment: fixed;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.main-page-content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--main-spacing);
+  padding-top: calc(var(--main-spacing) + 70px);
+}
+
+.main-page-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--main-spacing);
+  align-items: start;
+}
+
+/* ============================================
+   Recipe View Section
+   ============================================ */
+.recipe-view-section {
+  position: sticky;
+  top: calc(70px + var(--main-spacing));
+  max-height: calc(100vh - 70px - calc(var(--main-spacing) * 2));
+  animation: fadeInUp 0.6s var(--main-transition);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Recipe List Section
+   ============================================ */
+.recipe-list-section {
+  animation: fadeInUp 0.6s var(--main-transition) 0.2s both;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 1200px) {
+  .main-page-grid {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-page-grid {
+    grid-template-columns: 1fr;
+    gap: var(--main-spacing);
+  }
+
+  .recipe-view-section {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-page-content {
+    padding: 1rem;
+    padding-top: calc(70px + 1rem);
+  }
+
+  .main-page-grid {
+    gap: 1rem;
+  }
+}
+
+/* Legacy support */
+.bgImg {
+  background: var(--main-bg);
+  min-height: 100vh;
+}
+

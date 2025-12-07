@@ -1,108 +1,175 @@
-import React, {useContext, useEffect, useState} from "react";
-import "./Nav.css";
-import Burger from "./Burger";
-import { ContextData } from "../../App";
-import Avatar from "@mui/material/Avatar";
-import { getDownloadURL, listAll, ref } from "firebase/storage";
-import { chekPremium, storage } from "../../Firebase";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { AiOutlineClose } from "react-icons/ai";
+import React, { useContext, useEffect, useState, useRef } from "react"
+import "./Nav.css"
+import Burger from "./Burger"
+import { ContextData } from "../../App"
+import Avatar from "@mui/material/Avatar"
+import { getDownloadURL, listAll, ref } from "firebase/storage"
+import { chekPremium, storage } from "../../Firebase"
+import { RxHamburgerMenu } from "react-icons/rx"
+import { AiOutlineClose } from "react-icons/ai"
+import { GiCook } from "react-icons/gi"
 
 export default function Nav() {
-  const [burger, sutBurger] = useState(false);
-  const { user, setPremium } = useContext(ContextData);
-  const [img, setImg] = useState(user != null ? user.photoURL : "");
+  const [burger, setBurger] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
+  const { user, setPremium } = useContext(ContextData)
+  const [img, setImg] = useState(user != null ? user.photoURL : "")
+  const navRef = useRef(null)
+  const burgerButtonRef = useRef(null)
+  const burgerMenuRef = useRef(null)
 
+  // Fetch user image and premium status
   useEffect(() => {
     if (user != null) {
-      chekPremium(user.uid, setPremium);
-      const imagesListRef = ref(storage, `${user.uid}`);
+      chekPremium(user.uid, setPremium)
+      const imagesListRef = ref(storage, `${user.uid}`)
       listAll(imagesListRef).then((response) => {
         response.items.forEach((item) => {
           getDownloadURL(item).then((url) => {
-            if (url)
-              setImg(url);
-          });
-        });
-      });
+            if (url) setImg(url)
+          })
+        })
+      })
     }
-  }, [user])
+  }, [user, setPremium])
 
-
-
+  // Close burger menu when clicking outside
   useEffect(() => {
-    window.addEventListener("click", () => sutBurger(false))
-  }, [])
+    const handleClickOutside = (event) => {
+      if (burger) {
+        // Check if click is outside the nav and burger menu
+        const isClickOutsideNav =
+          navRef.current && !navRef.current.contains(event.target)
+        const isClickOutsideButton =
+          burgerButtonRef.current &&
+          !burgerButtonRef.current.contains(event.target)
+        const isClickOnBurgerMenu = event.target.closest(".cardBurger")
+
+        if (isClickOutsideNav && isClickOutsideButton && !isClickOnBurgerMenu) {
+          handleCloseBurger()
+        }
+      }
+    }
+
+    if (burger) {
+      // Use a small delay to avoid immediate closing
+      const timeoutId = setTimeout(() => {
+        document.addEventListener("mousedown", handleClickOutside)
+        document.addEventListener("touchstart", handleClickOutside)
+      }, 100)
+
+      return () => {
+        clearTimeout(timeoutId)
+        document.removeEventListener("mousedown", handleClickOutside)
+        document.removeEventListener("touchstart", handleClickOutside)
+      }
+    }
+  }, [burger])
+
+  // Prevent body scroll when burger menu is open (optional)
+  useEffect(() => {
+    if (burger) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [burger])
+
+  const toggleBurger = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (burger) {
+      // Start exit animation
+      setIsClosing(true)
+      // Wait for animation to complete before removing from DOM
+      setTimeout(() => {
+        setBurger(false)
+        setIsClosing(false)
+      }, 300) // Match animation duration
+    } else {
+      setBurger(true)
+      setIsClosing(false)
+    }
+  }
+
+  const handleCloseBurger = () => {
+    setIsClosing(true)
+    setTimeout(() => {
+      setBurger(false)
+      setIsClosing(false)
+    }, 300)
+  }
 
   return (
-    <div id="e" className="container-fluid sticky-top">
-      <div className="myNav row ">
-        <div className="col-2 d-flex">
-          <div className="logoNav">
-            <img
-              className="logoNavImg"
-              src="https://i.imagesup.co/images2/eb71cc96839f80c8a1e3f35783f6b28984ca90d2.png"
-              alt=""
-            />
-          </div>
-          <div className="col-sm-6 col-5 pr-0 pl-0 d-flex align-items-center">
-            <h2 className="myFont">BiteBook</h2>
-          </div>
-        </div>
-
-        <div className="col-3 fst-italic fs-2 pr-0 pl-0 d-flex justify-content-center align-items-center">
-          {!burger ? (
-            <div className="name d-flex align-content-center">
-              <div className="mt-2 mr-3 h6 font-weight-bold text-center">
-                {user ? `${user.displayName}` : " "}
-              </div>
-              <Avatar
-                className="border mt-2 mt-sm-0 "
-                alt="User Name"
-                src={user ? `${img}` : " "}
-              />
+    <nav id="navbar" className="navbar" ref={navRef}>
+      <div className="navbar-container">
+        <div className="navbar-content">
+          {/* Logo Section */}
+          <div className="navbar-logo-section">
+            <div className="logo-wrapper">
+              <GiCook className="logo-icon" size={40} aria-hidden="true" />
             </div>
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="col-sm-1 col-2 pr-0 pl-0 d-flex justify-content-center">
-          <div
-            className=""
-            onClick={(e) => {
-              e.stopPropagation();
-              sutBurger(!burger);
-            }}
-          >
-            <div className="thebur">
-              <div className="d-flex mt-2">
+            <h1 className="navbar-brand">BiteBook</h1>
+          </div>
+
+          {/* User Info Section */}
+          <div className="navbar-user-section">
+            {!burger && user && (
+              <div className="user-info">
+                <span className="user-name">{user.displayName}</span>
+                <Avatar
+                  className="user-avatar"
+                  alt={user.displayName || "User"}
+                  src={img || undefined}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Burger Menu Button */}
+          <div className="navbar-menu-toggle">
+            <button
+              ref={burgerButtonRef}
+              className="burger-button"
+              onClick={toggleBurger}
+              aria-label={burger ? "Close menu" : "Open menu"}
+              aria-expanded={burger}
+              type="button"
+            >
+              <div className="burger-icon-wrapper">
                 {burger ? (
                   <AiOutlineClose
-                    size={50}
-                    style={{ color: "rgba(70, 58, 58, 0.65)" }}
-                    title="לחץ"
+                    size={28}
+                    className="burger-icon"
+                    aria-hidden="true"
                   />
                 ) : (
                   <RxHamburgerMenu
-                    size={50}
-                    style={{ color: "rgba(70, 58, 58, 0.65)" }}
-                    title="לחץ"
+                    size={28}
+                    className="burger-icon"
+                    aria-hidden="true"
                   />
                 )}
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
-      {burger ? (
-        <div>
-          <div className="d-flex justify-content-end">
-            <Burger img={img} />
-          </div>
+
+      {/* Burger Menu */}
+      {burger && (
+        <div
+          ref={burgerMenuRef}
+          className={`burger-menu-wrapper ${
+            isClosing ? "burger-menu-exit" : "burger-menu-enter"
+          }`}
+        >
+          <Burger img={img} />
         </div>
-      ) : (
-        ""
       )}
-    </div>
-  );
+    </nav>
+  )
 }

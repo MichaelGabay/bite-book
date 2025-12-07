@@ -57,28 +57,50 @@ export default function SignUp() {
 const theme = createTheme();
 
   return (
-    <div className="bgimg">
+    <div className="bgimg-modal">
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" >
+      <Container component="main" maxWidth="xs" sx={{ py: 2, px: 3 }}>
         <CssBaseline  />
         <Box
           sx={{
-            marginTop: 4,
+            marginTop: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ 
+            m: 0.5, 
+            bgcolor: 'secondary.main',
+            width: 48,
+            height: 48,
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              transform: 'scale(1.1) rotate(5deg)',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+            }
+          }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography 
+            component="h1" 
+            variant="h5"
+            sx={{
+              fontWeight: 600,
+              color: '#1976d2',
+              mb: 1.5,
+              fontSize: '1.5rem'
+            }}
+          >
             Sign up
-            <br />
-            {currentUser?.email}
+            {currentUser?.email && (
+              <Typography variant="body2" sx={{ mt: 0.5, color: '#666', fontSize: '0.75rem' }}>
+                {currentUser.email}
+              </Typography>
+            )}
           </Typography>
-          <Box  noValidate  sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+          <Box  noValidate  sx={{ mt: 1.5, width: '100%' }}>
+            <Grid container spacing={1.5}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -86,6 +108,7 @@ const theme = createTheme();
                   inputRef={name}
                   required
                   fullWidth
+                  size="small"
                   id="firstName"
                   label="First Name"
                   autoFocus
@@ -95,6 +118,7 @@ const theme = createTheme();
                 <TextField
                   required
                   fullWidth
+                  size="small"
                   inputRef={lastName}
                   id="lastName"
                   label="Last Name"
@@ -106,6 +130,7 @@ const theme = createTheme();
                 <TextField
                   required
                   fullWidth
+                  size="small"
                  inputRef={email}
                   id="email"
                   label="Email Address"
@@ -117,6 +142,7 @@ const theme = createTheme();
                 <TextField
                   required
                   fullWidth
+                  size="small"
                   inputRef={password}
                   name="password"
                   label="Password"
@@ -131,7 +157,23 @@ const theme = createTheme();
             disabled = {loading}
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ 
+                mt: 2, 
+                mb: 2,
+                py: 1.2,
+                fontSize: '1rem',
+                fontWeight: 600,
+                borderRadius: 2,
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 4px 12px rgba(25, 118, 210, 0.4)'
+                },
+                '&:active': {
+                  transform: 'translateY(0)',
+                  boxShadow: '0 2px 6px rgba(25, 118, 210, 0.3)'
+                }
+              }}
             >
               Sign Up
             </Button>

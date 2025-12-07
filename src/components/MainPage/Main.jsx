@@ -1,35 +1,37 @@
-import React, { useContext, useEffect } from "react";
-import Nav from "../nav/Nav";
-import RecipeList from "./RecipeList";
-import RecipeView from "./RecipeView";
+import React, { useContext, useEffect } from "react"
+import Nav from "../nav/Nav"
+import RecipeList from "./RecipeList"
+import RecipeView from "./RecipeView"
 import "./Main.css"
-import { ContextData } from "../../App";
+import { ContextData } from "../../App"
 
 export default function Main() {
-  const { setCurrentOpen } = useContext(ContextData);
-  
+  const { setCurrentOpen } = useContext(ContextData)
 
   useEffect(() => {
     window.scroll({
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth'
-    });
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    })
   }, [setCurrentOpen])
-  
+
   return (
-    <>
-    <div className="bgImg" >
+    <div className="main-page-container">
       <Nav />
-      <div className="d-lg-flex flex-row">
-        <div className="col-lg-8 col-12 ">
-          <RecipeView />
-        </div>
-        <div className="col-lg-4 col-12 pl-lg-0 mb-2">
-          <RecipeList /> 
+      <div className="main-page-content">
+        <div className="main-page-grid">
+          {/* Recipe View Section */}
+          <div className="recipe-view-section">
+            <RecipeView />
+          </div>
+
+          {/* Recipe List Section */}
+          <div className="recipe-list-section">
+            <RecipeList />
+          </div>
         </div>
       </div>
     </div>
-   </>
-  );
+  )
 }
