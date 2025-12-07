@@ -1,39 +1,75 @@
-import React, { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Login from "../Log in/Login";
-import "./HomePage.css";
-import { useAuth } from "../../Firebase";
-import { ContextData } from "../../App";
+import React, { useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import Login from "../Log in/Login"
+import "./HomePage.css"
+import { useAuth } from "../../Firebase"
+import { ContextData } from "../../App"
+import { GiCook } from "react-icons/gi"
+import { FaUtensils, FaBookOpen } from "react-icons/fa"
 
 export default function HomePage() {
-  const { SetUser } = useContext(ContextData);
+  const { SetUser } = useContext(ContextData)
+  const currentUser = useAuth()
+  const navigate = useNavigate()
 
-  const currentUser = useAuth();
   useEffect(() => {
-    console.log(currentUser);
-    if (currentUser) SetUser(currentUser);
-  }, [currentUser]);
+    if (currentUser) SetUser(currentUser)
+  }, [currentUser, SetUser])
 
-  const navigate = useNavigate();
+  if (currentUser) {
+    navigate("/main")
+    return null
+  }
+
   return (
-    <>
-      {currentUser == null ? (
-        <div className="bgImg row">
+    <div className="homepage-container">
+      {/* Background with overlay */}
+      <div className="homepage-background">
+        <div className="background-overlay"></div>
+        <div className="background-pattern"></div>
+      </div>
 
-          <div className="col-0 col-lg-5">
-
+      {/* Content */}
+      <div className="homepage-content">
+        {/* Left Section - Branding */}
+        <div className="homepage-branding">
+          <div className="brand-logo-wrapper">
+            <GiCook className="brand-logo-icon" size={80} />
           </div>
-          <div className="col-12 col-lg-7">
-            <h3 className="myFont myFontHomePage">biteBook</h3>
-            <h4 className="myFont myFontHomePage2">מתכונים שאוהבים לאכול</h4>
+          <h1 className="brand-title">
+            <span className="brand-title-main">BiteBook</span>
+            <span className="brand-title-accent">מתכונים שאוהבים לאכול</span>
+          </h1>
+          <div className="brand-features">
+            <div className="feature-item">
+              <FaBookOpen className="feature-icon" />
+              <span>ספר מתכונים אישי</span>
+            </div>
+            <div className="feature-item">
+              <FaUtensils className="feature-icon" />
+              <span>שתף מתכונים</span>
+            </div>
+            <div className="feature-item">
+              <GiCook className="feature-icon" />
+              <span>חפש מתכונים חדשים</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Section - Login */}
+        <div className="homepage-login-section">
+          <div className="login-wrapper">
             <Login />
           </div>
-
-
         </div>
-      ) : (
-        navigate("/main")
-      )}
-    </>
-  );
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="homepage-decorations">
+        <div className="decoration-circle decoration-1"></div>
+        <div className="decoration-circle decoration-2"></div>
+        <div className="decoration-circle decoration-3"></div>
+      </div>
+    </div>
+  )
 }
