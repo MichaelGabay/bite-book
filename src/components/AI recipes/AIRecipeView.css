@@ -1,0 +1,74 @@
+.ai-recipe-image-placeholder {
+  width: 100%;
+  min-height: 300px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 4rem;
+  padding: 2rem;
+}
+
+.ai-recipe-image-placeholder p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: white;
+}
+
+.instructions-container {
+  padding: 1rem 0;
+}
+
+.instruction-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(232, 230, 230, 0.2);
+  border-radius: 10px;
+  border-right: 3px solid #667eea;
+  transition: background-color 0.2s ease;
+}
+
+.instruction-step:hover {
+  background-color: rgba(232, 230, 230, 0.35);
+}
+
+.instruction-number {
+  font-weight: 600;
+  margin-left: 0.75rem;
+  color: #667eea;
+  min-width: 25px;
+  font-size: 0.95rem;
+}
+
+.instruction-text {
+  flex: 1;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: #333;
+  text-align: right;
+}
+
+.ing_style {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.apiPlus {
+  position: fixed;
+  bottom: 30px;
+  left: 45px;
+  z-index: 1000;
+}
+
+.back-button-ipa {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  z-index: 1000;
+}

@@ -1,29 +1,31 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import AboutUs from "../components/AboutUs/AboutUs";
-import Card from "../components/Card/CardView";
-import NewCard from "../components/Card/NewCard";
-import HomePage from "../components/HomePage/HomePage";
-import LoginPas from "../components/Log in/LoginPas";
-import SignUp from "../components/Log in/SignUp";
-import RecipeView from "../components/MainPage/RecipeView";
-import Nav from "../components/nav/Nav";
-import NewRecipe from "../components/newRecipe/NewRecipe";
-import PageError from "../components/pageError/PageError";
-import InputFile from "../inputFile/InputFile";
-import RecipeList from "../components/MainPage/RecipeList";
-import Burger from "../components/nav/Burger";
-import Main from "../components/MainPage/Main";
-import Plus from "../components/MainPage/Plus";
-import RecipeUp from "../components/newRecipe/RecipeUp";
-import Pro from "../components/Pro/Pro";
-import CreditCard from "../components/Pro/CreditCard";
-import ForgotPas from "../components/Log in/ForgotPas";
-import ApiCard from "../components/Api recipes/ApiCard";
-import ApiMain from "../components/Api recipes/ApiMain";
-import ApiView from "../components/Api recipes/ApiView";
-import ApiPlus from "../components/Api recipes/ApiPlus";
-import UpdateUser from "../components/nav/UpdateUser";
+import React from "react"
+import { Route, Routes } from "react-router-dom"
+import AboutUs from "../components/AboutUs/AboutUs"
+import Card from "../components/Card/CardView"
+import NewCard from "../components/Card/NewCard"
+import HomePage from "../components/HomePage/HomePage"
+import LoginPas from "../components/Log in/LoginPas"
+import SignUp from "../components/Log in/SignUp"
+import RecipeView from "../components/MainPage/RecipeView"
+import Nav from "../components/nav/Nav"
+import NewRecipe from "../components/newRecipe/NewRecipe"
+import PageError from "../components/pageError/PageError"
+import InputFile from "../inputFile/InputFile"
+import RecipeList from "../components/MainPage/RecipeList"
+import Burger from "../components/nav/Burger"
+import Main from "../components/MainPage/Main"
+import Plus from "../components/MainPage/Plus"
+import RecipeUp from "../components/newRecipe/RecipeUp"
+import Pro from "../components/Pro/Pro"
+import CreditCard from "../components/Pro/CreditCard"
+import ForgotPas from "../components/Log in/ForgotPas"
+import ApiCard from "../components/Api recipes/ApiCard"
+import ApiMain from "../components/Api recipes/ApiMain"
+import ApiView from "../components/Api recipes/ApiView"
+import ApiPlus from "../components/Api recipes/ApiPlus"
+import UpdateUser from "../components/nav/UpdateUser"
+import AIGenerate from "../components/AI recipes/AIGenerate"
+import AIRecipeView from "../components/AI recipes/AIRecipeView"
 
 export default function MyRouter() {
   return (
@@ -52,8 +54,10 @@ export default function MyRouter() {
         <Route path="/aplus" element={<ApiPlus />} />
         <Route path="/Main/UpdateUser" element={<UpdateUser />} />
         <Route path="/apiView" element={<ApiView />} />
+        <Route path="/main/aiGenerate" element={<AIGenerate />} />
+        <Route path="/aiRecipeView" element={<AIRecipeView />} />
         <Route path="/*" element={<PageError />} />
       </Routes>
     </div>
-  );
+  )
 }

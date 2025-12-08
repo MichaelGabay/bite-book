@@ -5,6 +5,7 @@ import { ContextData } from "../../App"
 import { db, storage } from "../../Firebase"
 import "./Card.css"
 import { FaHeart, FaRegHeart } from "react-icons/fa"
+import { GiCook } from "react-icons/gi"
 
 export default function CardView({ item }) {
   const { setCurrentOpen, setRun } = useContext(ContextData)
@@ -49,10 +50,8 @@ export default function CardView({ item }) {
     setFavo(!favo)
   }
 
-  const defaultImage =
-    "https://i.imagesup.co/images2/4c7cc05dd420f94ff35456056d5a114499bbbb62.jpg"
-
   const displayName = item?.name || "מתכון ללא שם"
+  const hasImage = mainImg[0] || item?.imgUrl
 
   return (
     <div
@@ -68,12 +67,18 @@ export default function CardView({ item }) {
       }}
     >
       <div className="recipe-card-image-wrapper">
-        <img
-          className="recipe-card-image"
-          src={mainImg[0] || item?.imgUrl || defaultImage}
-          alt={item?.name || "Recipe"}
-          loading="lazy"
-        />
+        {hasImage ? (
+          <img
+            className="recipe-card-image"
+            src={mainImg[0] || item?.imgUrl}
+            alt={item?.name || "Recipe"}
+            loading="lazy"
+          />
+        ) : (
+          <div className="recipe-card-icon-placeholder">
+            <GiCook className="recipe-card-icon" />
+          </div>
+        )}
         <div className="recipe-card-overlay">
           <button
             className="recipe-card-favorite"
