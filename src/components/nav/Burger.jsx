@@ -9,6 +9,7 @@ import { FaUserCircle } from "react-icons/fa"
 import { TbFileSearch, TbPremiumRights } from "react-icons/tb"
 import { FcAbout } from "react-icons/fc"
 import { AiOutlineRobot } from "react-icons/ai"
+import { FaShoppingBasket } from "react-icons/fa"
 
 export default function Burger({ img }) {
   const { SetLoading, setCurrentOpen, user, SetUser } = useContext(ContextData)
@@ -87,6 +88,15 @@ export default function Burger({ img }) {
             צור מתכון עם AI{" "}
             <div className="d-flex align-items-center ml-2 ">
               <AiOutlineRobot size={20} />
+            </div>
+          </Link>
+          <Link
+            to={"/main/aiGenerateFromIngredients"}
+            className="d-flex justify-content-end pl-0 pr-0 col-11 nav-link"
+          >
+            צור מתכון מהמרכיבים שלך{" "}
+            <div className="d-flex align-items-center ml-2 ">
+              <FaShoppingBasket size={20} />
             </div>
           </Link>
           <Link

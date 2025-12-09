@@ -26,6 +26,7 @@ import ApiPlus from "../components/Api recipes/ApiPlus"
 import UpdateUser from "../components/nav/UpdateUser"
 import AIGenerate from "../components/AI recipes/AIGenerate"
 import AIRecipeView from "../components/AI recipes/AIRecipeView"
+import AIGenerateFromIngredients from "../components/AI recipes/AIGenerateFromIngredients"
 
 export default function MyRouter() {
   return (
@@ -55,6 +56,7 @@ export default function MyRouter() {
         <Route path="/Main/UpdateUser" element={<UpdateUser />} />
         <Route path="/apiView" element={<ApiView />} />
         <Route path="/main/aiGenerate" element={<AIGenerate />} />
+        <Route path="/main/aiGenerateFromIngredients" element={<AIGenerateFromIngredients />} />
         <Route path="/aiRecipeView" element={<AIRecipeView />} />
         <Route path="/*" element={<PageError />} />
       </Routes>
